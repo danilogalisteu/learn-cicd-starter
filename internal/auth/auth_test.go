@@ -39,7 +39,7 @@ func TestAuth(t *testing.T) {
 		t.Fatalf("Error parsing correct auth header:\n%v", err)
 	}
 
-	if key == api_key {
+	if key != api_key {
 		t.Fatalf("Wrong key '%s' was parsed from header; should be '%s'", key, api_key)
 	}
 }
