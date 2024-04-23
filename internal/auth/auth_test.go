@@ -21,19 +21,19 @@ func TestAuth(t *testing.T) {
 		t.Fatalf("Error parsing malformed auth header")
 	}
 
-	headers.Set("Authorization", api_key + " ABCDE")
+	headers.Set("Authorization", api_key+" ABCDE")
 	_, err = GetAPIKey(headers)
 	if (err == ErrNoAuthHeaderIncluded) || (err == nil) {
 		t.Fatalf("Error parsing malformed header:\n%v", err)
 	}
 
-	headers.Set("Authorization", api_key + " ABCDE FGHIJ")
+	headers.Set("Authorization", api_key+" ABCDE FGHIJ")
 	_, err = GetAPIKey(headers)
 	if (err == ErrNoAuthHeaderIncluded) || (err == nil) {
 		t.Fatalf("Error parsing malformed header:\n%v", err)
 	}
 
-	headers.Set("Authorization", "ApiKey " + api_key)
+	headers.Set("Authorization", "ApiKey "+api_key)
 	key, err := GetAPIKey(headers)
 	if err != nil {
 		t.Fatalf("Error parsing correct auth header:\n%v", err)
