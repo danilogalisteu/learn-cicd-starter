@@ -16,8 +16,8 @@ func TestGetAPIKey(t *testing.T) {
 
 	tests := []test{
 		{name: "empty", authHeader: "", key: "", err: ErrNoAuthHeaderIncluded},
-		{name: "missing key name", authHeader: "p@ssw0rd", key: "", err: ErrMalformedAuthHeader},
-		{name: "wrong key name", authHeader: "apikey p@ssw0rd", key: "", err: ErrMalformedAuthHeader},
+		{name: "missing key name", authHeader: "p@ssw0rd", key: "", err: errors.New("malformed authorization header")},
+		{name: "wrong key name", authHeader: "apikey p@ssw0rd", key: "", err: errors.New("malformed authorization header")},
 		{name: "correct", authHeader: "ApiKey p@ssw0rd", key: "p@ssw0rd", err: nil},
 	}
 
